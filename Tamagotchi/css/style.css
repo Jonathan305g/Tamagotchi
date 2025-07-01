@@ -1,0 +1,344 @@
+/*Habitacion */
+.tamagotchi-container {
+    background: url('../img/room-bg.png') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+    border: 5px solid var(--primary-color);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+/* Añade un overlay para mejor legibilidad */
+.tamagotchi-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.3);
+    z-index: 0;
+}
+
+/* Asegura que los elementos estén sobre el fondo */
+.tamagotchi-display, 
+.stats-container, 
+.controls, 
+.log-container {
+    position: relative;
+    z-index: 1;
+}
+
+:root {
+    --primary-color: #ff6b6b;
+    --secondary-color: #4ecdc4;
+    --dark-color: #292f36;
+    --light-color: #f7fff7;
+    --accent-color: #ffd166;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f8ff;
+    color: var(--dark-color);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1{
+    display: none;
+}
+
+.tamagotchi-container {
+    border: 5px solid var(--primary-color);
+    border-radius: 15px;
+    padding: 20px;
+    background-color: #fff9f9;
+}
+
+.tamagotchi-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.character {
+    flex: 1;
+    text-align: center;
+}
+
+.character img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.speech-bubble {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background-color: white;
+    border: 3px solid var(--dark-color);
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 60%;
+    min-width: 100px;
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.speech-bubble:after {
+    content: '';
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-right-color: var(--dark-color);
+    border-left: 0;
+    margin-top: -10px;
+    margin-left: -10px;
+}
+
+.speech-bubble.show {
+    opacity: 1;
+}
+
+.stats-container {
+    margin-bottom: 20px;
+}
+
+.stat-bar {
+    margin-bottom: 10px;
+}
+
+.stat-bar label {
+    display: inline-block;
+    width: 80px;
+    font-weight: bold;
+}
+
+progress {
+    width: calc(100% - 90px);
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+}
+
+progress::-webkit-progress-value {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+}
+
+progress::-moz-progress-bar {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.btn {
+    flex: 1;
+    min-width: 100px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #ff5252;
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.log-container {
+    border: 2px solid var(--dark-color);
+    border-radius: 10px;
+    padding: 10px;
+    background-color: white;
+}
+
+.log-container h3 {
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.log {
+    height: 100px;
+    overflow-y: auto;
+    font-size: 0.8rem;
+    padding: 5px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.log p {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Estados del personaje */
+.hungry {
+    animation: shake 0.5s infinite;
+}
+
+.sleepy {
+    opacity: 0.7;
+}
+
+.happy {
+    animation: bounce 0.5s infinite;
+}
+
+.dirty {
+    filter: brightness(0.8) contrast(1.2);
+}
+
+.sad {
+    animation: pulse 0.5s infinite;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+}
+
+@media (max-width: 600px) {
+    .controls {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+    
+    .tamagotchi-display {
+        flex-direction: column;
+    }
+    
+    .speech-bubble {
+        position: static;
+        margin-top: 10px;
+        max-width: 100%;
+    }
+    
+    .speech-bubble:after {
+        display: none;
+    }
+}
+/*estilos para el nombre del tamagotchi*/
+.name-display {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 107, 107, 0.9);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.name-display span {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+}
+/* Estilos para las barras de estado */
+.stat-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.stat-bar label {
+    width: 100px;
+    font-weight: bold;
+    color: #292f36;
+}
+
+.stat-percent {
+    width: 50px;
+    text-align: right;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    color: var(--dark-color);
+    margin-left: 10px;
+}
+
+progress {
+    flex-grow: 1;
+    height: 20px;
+    border-radius: 10px;
+    border: 2px solid var(--dark-color);
+}
+/* Estilos para las barras de progreso */
+progress::-webkit-progress-bar {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+progress::-webkit-progress-value {
+    background: linear-gradient(to right, #4ecdc4, #2a9d8f);
+    border-radius: 8px;
+    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.4);
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jake Tamagotchi</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="name-display" id="name-display">
+    <span id="display-name"></span>
+        </div>
+
+    <div class="container">
+        <h1>Jake Tamagotchi</h1>
+        
+        <div class="tamagotchi-container">
+            <div class="tamagotchi-display">
+                <div class="character" id="character">
+                    <img src="img/jake-normal.png" alt="Jake" id="jake-image">
+                </div>
+                <div class="speech-bubble" id="speech-bubble"></div>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-bar">
+                    <label for="hunger-bar">Hambre:</label>
+                    <progress id="hunger-bar" value="70" max="100"></progress>
+                    <span class="stat-percent" id="hunger-percent">70%</span>
+                </div>
+                <div class="stat-bar">
+                    <label for="energy-bar">Energía:</label>
+                    <progress id="energy-bar" value="80" max="100"></progress>
+                    <span class="stat-percent" id="energy-percent">80%</span>
+                </div>
+                <div class="stat-bar">
+                    <label for="happiness-bar">Felicidad:</label>
+                    <progress id="happiness-bar" value="60" max="100"></progress>
+                    <span class="stat-percent" id="happiness-percent">60%</span>
+                </div>
+                <div class="stat-bar">
+                    <label for="cleanliness-bar">Higiene:</label>
+                    <progress id="cleanliness-bar" value="50" max="100"></progress>
+                    <span class="stat-percent" id="cleanliness-percent">50%</span>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button id="feed-btn" class="btn">Alimentar</button>
+                <button id="sleep-btn" class="btn">Dormir</button>
+                <button id="play-btn" class="btn">Jugar</button>
+                <button id="clean-btn" class="btn">Bañar</button>
+                <button id="advice-btn" class="btn">Consejo</button>
+            </div>
+            
+            <div class="log-container" id="log-container">
+                <h3>Registro de actividades</h3>
+                <div class="log" id="log"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/states.js"></script>
+    <script src="js/tamagotchi.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
